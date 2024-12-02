@@ -5,57 +5,66 @@ fiat currency rates and cryptocurrency rates, with a 20% chance of returning a 5
 
 ### Endpoints
 
-#### `/fiat-currency-rates`
+#### GET `/fiat-currency-rates`
 
-- **Method:** GET
-- **Headers:**
-    - `x-api-key`: API key for authentication (must be `secret-key`)
+- **Request Headers:**
+    - `X-API-KEY`: API key for authentication (must be `secret-key`)
 - **Response:**
     - **Success (200):** JSON array of currency rates
-    - **Error (400):** Invalid API key
+    ```json
+    [
+      {
+        "currency": "USD",
+        "rate": 45.67
+      },
+      {
+        "currency": "EUR",
+        "rate": 56.78
+      }
+    ]
+  ```
+    - **Error (401):** Invalid API key
+  ```json
+    {
+      "error": "Invalid API key"
+    }
+    ```
     - **Error (500):** Internal Server Error (20% chance)
+  ```json
+    {
+      "error": "Invalid API key"
+    }
+    ```
 
-#### `/crypto-currency-rates`
+#### GET `/crypto-currency-rates`
 
-- **Method:** GET
 - **Response:**
     - **Success (200):** JSON array of cryptocurrency rates
+    ```json
+    [
+      {
+        "name": "BTC",
+        "value": 12345.67
+      },
+      {
+        "name": "ETH",
+        "value": 234.56
+      }
+    ]
+    ```
     - **Error (500):** Internal Server Error (20% chance)
-
-### Response Format
-
-#### FiatRate
-
-```json
-{
-  "currency": "USD",
-  "rate": 45.67
-}
-```
-
-#### CryptoRate
-
-```json
-{
-  "name": "BTC",
-  "value": 12345.67
-}
-```
-
-#### ErrorResponse
-
-```json
-{
-  "error": "Invalid API key"
-}
-```
+    ```json
+    {
+      "error": "Invalid API key"
+    }
+    ```
 
 ### Running the Application
 
 1. **Build the application:**
 
 ```sh
-   go build -o main
+go build -o main
 ```
 
 2. **Run the application:**
@@ -75,6 +84,7 @@ docker build -t currency-crypto-rates .
 ```sh
 docker run -p 8080:8080 currency-crypto-rates
 ```
+
 5. **Run the Docker container with image from Docker Hub:**
 
 ```sh

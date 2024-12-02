@@ -26,7 +26,8 @@ func main() {
 	http.HandleFunc("/fiat-currency-rates", func(w http.ResponseWriter, r *http.Request) {
 		apiKey := r.Header.Get("x-api-key")
 		if apiKey != "secret-key" {
-			w.WriteHeader(http.StatusBadRequest)
+			w.Header().Set("Content-Type", "application/json")
+			w.WriteHeader(http.StatusUnauthorized)
 			json.NewEncoder(w).Encode(ErrorResponse{Error: "Invalid API key"})
 			return
 		}
