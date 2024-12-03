@@ -32,7 +32,7 @@ fiat currency rates and cryptocurrency rates, with a 20% chance of returning a 5
     - **Error (500):** Internal Server Error (20% chance)
   ```json
     {
-      "error": "Invalid API key"
+      "error": "Internal Server Error"
     }
     ```
 
@@ -55,7 +55,7 @@ fiat currency rates and cryptocurrency rates, with a 20% chance of returning a 5
     - **Error (500):** Internal Server Error (20% chance)
     ```json
     {
-      "error": "Invalid API key"
+      "error": "Internal Server Error"
     }
     ```
 
@@ -96,7 +96,7 @@ docker run -p 8080:8080 docker.io/illenko/currencies-mocks:latest
 1. **Fetch Fiat Currency Rates:**
 
 ```sh
-curl -H "x-api-key: secret-key" http://localhost:8080/fiat-currency-rates
+curl -H "X-API-KEY: secret-key" http://localhost:8080/fiat-currency-rates
 ```
 
 2. **Fetch Crypto Currency Rates:**
